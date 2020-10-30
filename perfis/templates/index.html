@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-	<meta charset="UTF-8">
-	<title>ConnectedIN</title>
-</head>
-<body>
-{#	<h1>Bem vindo {{nome}} à app perfis</h1>#}
-{#	<h3>Você é o visitante número {{n}}#}
-    <h1>Index</h1>
-
-        {%  if perfis %}
-            <ul>
-                {%  for perfil in perfis  %}
-{#                    <li>{{ perfil.nome }}</li>#}
-{#                    <li>{{ perfil.email }}</li>#}
-
-                    <li>
-                        <a href="{% url 'exibir' perfil.id %}">
-                            {{ perfil.nome }}
-
-                        </a> / {{ perfil.email }}
-                    </li>
-                {%  endfor %}
-            </ul>
+{% extends "base.html" %}
+{% block body %}
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Todos os Perfis</strong>
+        </div>
+        {% if perfis %}
+        <ul>
+            {% for perfil in perfis %}
+            <li>
+        <a href="{% url 'exibir' perfil.id%}">{{ perfil.nome }}</a>
+        / {{ perfil.email }}
+        </li>
+        {% endfor %}
+        </ul>
         {% else %}
-            <p>Nenhum Perfil encontrado</p>
+        <p>Nenhum Perfil encontrado</p>
         {% endif %}
-
-
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
