@@ -6,5 +6,6 @@ class Publicacao(models.Model):
     usuario = models.ForeignKey(Perfil,on_delete=models.CASCADE,related_name='perfis_pub')
     data_publicacao = models.DateTimeField(auto_now=True)
 
-    
+    class Meta:
+        ordering = ['-data_publicacao']
 
