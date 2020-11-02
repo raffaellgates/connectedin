@@ -1,15 +1,12 @@
-{% extends "base_usuario.html" %}
+{% extends "base_timeline.html" %}
 {% block body %}
-    <form class="form-signin" action="{% url 'publicar' %}"
-          method="post">
+    <form class="form-signin" method="post">
     {% csrf_token %}
+    <hr />
     <h2 class="form-signin-heading">  Edite sua Publicação</h2>
 
-    <textarea cols="100" rows="6" id="id_publicacao" name="publicacao"
-    class="form-control" required >
+        {{ form }}
 
-    </textarea>
-    <hr />
     <button class="btn btn-lg btn-primary btn-block"
     type="submit" value="Login">Publicar</button>
     </form>

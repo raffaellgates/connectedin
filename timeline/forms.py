@@ -6,4 +6,4 @@ from timeline.models import Publicacao
 class PublicarForm(ModelForm):
     class Meta:
         model = Publicacao
-        fields = ['publicacao']
+        fields = ['postagem']

@@ -79,7 +79,18 @@
                     Não há convites
                 </div>    
             {% endif %}
-        {% endwith %}    
-    </div>    
+        {% endwith %}
+    </div>  
+        <div class="panel panel-default">
+            <ul class="list-group">
+                {% for postagem in postagens %}
+                    <li class = "list-group-item">
+                        {{ postagem.postagem }}
+                        <hr />
+                        {{postagem.usuario}}   <p>{{postagem.data_publicacao}}</p>
+                    </li>
+                    {% endfor %}
+            </ul>   
+        </div>   
 </div>
 {% endblock %}

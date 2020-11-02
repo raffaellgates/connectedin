@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from perfis.models import Perfil, Convite
+from timeline.models import Publicacao
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required
 def index(request):
+	
 	return render(request, 'index.html',{'perfis' : Perfil.objects.all(),
-										 'perfil_logado' : get_perfil_logado(request)})
+										 'perfil_logado' : get_perfil_logado(request),
+										 'postagens': list_publicacao(get_perfil_logado(request))})
+
 @login_required
 def exibir_perfil(request, perfil_id):
 
@@ -31,6 +35,17 @@ def convidar(request,perfil_id):
 
 def get_perfil_logado(request):
 	return request.user.perfil
+
+def list_publicacao(perfil_logado):
+        all_pub = Publicacao.objects.all()
+        cont = perfil_logado.contatos.all()
+        postagens = []
+        for postagem in all_pub:
+            for contato in cont:
+                if (postagem.usuario.id == contato.id or postagem.usuario.id == perfil_logado.id):
+                    postagens.append(postagem)
+            
+        return postagens
 
 @login_required
 def aceitar(request, convite_id): 

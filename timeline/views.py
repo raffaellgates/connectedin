@@ -10,18 +10,18 @@ from perfis.models import Perfil
 # return render(request, "list_posts.html", {'posts': posts})
 
 @login_required
-def add_post(request):
+def publicar(request):
     if request.method == "POST":
         form = PublicarForm(request.POST)
         if form.is_valid():
             model_instance = form.save(commit=False)
-            model_instance.perfil = get_perfil_logado(request)
+            model_instance.usuario = get_perfil_logado(request)
             model_instance.save()
-        return redirect('list_posts')
+        return redirect('index')
 
     else:
         form = PublicarForm()
-        return render(request, "timeline/publicar.html", {'form': form})
+        return render(request, "publicar.html", {'form': form})
 
 @login_required
 def get_perfil_logado(request):
