@@ -1,0 +1,16 @@
+{% extends "base_usuario.html" %}
+{% block body %}
+    <form class="form-signin" action="{% url 'publicar' %}"
+          method="post">
+    {% csrf_token %}
+    <h2 class="form-signin-heading">  Edite sua Publicação</h2>
+
+    <textarea cols="100" rows="6" id="id_publicacao" name="publicacao"
+    class="form-control" required >
+
+    </textarea>
+    <hr />
+    <button class="btn btn-lg btn-primary btn-block"
+    type="submit" value="Login">Publicar</button>
+    </form>
+{% endblock %}
